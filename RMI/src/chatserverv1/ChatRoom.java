@@ -1,5 +1,6 @@
 package chatserverv1;
 
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
@@ -33,16 +34,23 @@ public class ChatRoom extends UnicastRemoteObject implements IChatRoom{
 			result[i] = p.name();
 			i++;
 		}
-		return result:
+		return result;
 	}
 	
 	public void send(IParticipant p, String msg) {
-		String name = p.name();
-		System.out.println("Participant " + name + " send " + msg);
-		for(IParticipant other : participants) {
-			if(p != other) {
-				other.receive(name, msg);
+		String name;
+		try {
+			name = p.name();
+			System.out.println("Participant " + name + " send " + msg);
+			for(IParticipant other : participants) {
+				if(p != other) {
+					other.receive(name, msg);
+				}
 			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 }

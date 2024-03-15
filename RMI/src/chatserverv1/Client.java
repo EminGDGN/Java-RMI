@@ -1,7 +1,9 @@
 package chatserverv1;
 
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Client {
 	
@@ -13,7 +15,7 @@ public class Client {
 			ArrayList<IParticipant> participants = new ArrayList();
 			
 			for(int i = 0; i < 10; i++) {
-				IParticipant temp = new IParticipant(i,chatroom)
+				IParticipant temp = new Participant(i,chatroom);
 				participants.add(temp);
 				chatroom.connect(temp);
 				

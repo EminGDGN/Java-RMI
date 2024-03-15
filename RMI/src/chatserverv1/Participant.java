@@ -1,5 +1,6 @@
 package chatserverv1;
 
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Participant extends UnicastRemoteObject implements IParticipant{
@@ -7,7 +8,7 @@ public class Participant extends UnicastRemoteObject implements IParticipant{
 	IChatRoom chatroom;
 	String name;
 
-	public Participant(String name, IchatRoom chatroom) {
+	public Participant(String name, IChatRoom chatroom) {
 		this.name = name;
 		this.chatroom = chatroom;
 	}
