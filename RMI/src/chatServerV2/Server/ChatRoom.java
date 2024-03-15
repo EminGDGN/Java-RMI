@@ -1,4 +1,4 @@
-package chatserverv1;
+package chatServerV2.Server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

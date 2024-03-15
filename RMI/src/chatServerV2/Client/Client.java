@@ -1,11 +1,9 @@
-package chatserverv1;
+package chatServerV2.Client;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Scanner;
-import chatserverv1.IParticipant;
-import chatserverv1.Participant;
 
 
 public class Client {
@@ -30,9 +28,10 @@ public class Client {
 			}
 			
 			for(IParticipant p : participants) {
-				Scanner s = new Scanner(System.in);
-				String msg = s.nextLine();
-				chatroom.send(p, msg);
+				try (var s = new Scanner(System.in)) {
+					String msg = s.nextLine();
+					chatroom.send(p, msg);
+				}
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
