@@ -3,6 +3,8 @@ package chatServerV2.Server;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import chatServerV2.Interfaces.IChatRoom;
+
 public class Server {
 	
 	public static void main(String[] args) {

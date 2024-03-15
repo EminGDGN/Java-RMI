@@ -3,6 +3,9 @@ package chatServerV2.Client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import chatServerV2.Interfaces.IParticipant;
+import chatServerV2.Interfaces.IChatRoom;
+
 
 public class Participant extends UnicastRemoteObject implements IParticipant{
 	
@@ -10,9 +13,9 @@ public class Participant extends UnicastRemoteObject implements IParticipant{
 	IChatRoom chatroom;
 	String name;
 
-	public Participant(String name, IChatRoom chatroom2) throws RemoteException{
+	public Participant(String name, IChatRoom chatroom) throws RemoteException{
 		this.name = name;
-		this.chatroom = chatroom2;
+		this.chatroom = chatroom;
 	}
 	
 	public String name() throws RemoteException{
