@@ -36,8 +36,14 @@ public class ChatRoom extends UnicastRemoteObject implements IChatRoom{
 		String[] result = new String[participants.size()];
 		int i = 0;
 		for(IParticipant p : participants) {
-			result[i] = p.name();
-			i++;
+			try {
+				result[i] = p.name();
+				i++;
+			}
+			catch(RemoteException e) {
+				System.out.println("problem with participant during who execution");
+				this.leave(p);
+			}
 		}
 		return result;
 	}
@@ -48,8 +54,14 @@ public class ChatRoom extends UnicastRemoteObject implements IChatRoom{
 			name = p.name();
 			System.out.println("Participant " + name + " send " + msg);
 			for(IParticipant other : participants) {
-				if(p != other) {
-					other.receive(name, msg);
+				if(!p.name().equals(other.name())) {
+					try {
+						System.out.println("test : " + other.name());
+						other.receive(name, msg);
+					}
+					catch(RemoteException e) {
+						this.leave(other);
+					}
 				}
 			}
 		} catch (RemoteException e) {
